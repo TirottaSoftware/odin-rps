@@ -10,12 +10,16 @@ function computerPlay(){
     }
 }
 
-function playGame(){
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = window.prompt("Choose your weapon");
-        console.log(playRound(playerSelection, computerPlay()))
-    }
-}
+const container = document.querySelector('.main-container')
+const selectionButton = document.querySelectorAll('.selection')
+const resultDiv = document.querySelector('.result')
+
+selectionButton.forEach(button => {
+    button.addEventListener('click', () => {
+        resultDiv.textContent = playRound(button.textContent, computerPlay())
+    })
+});
+
 
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toUpperCase();
@@ -49,5 +53,3 @@ function playRound(playerSelection, computerSelection){
         }
     }
 }
-
-playGame()
